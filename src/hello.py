@@ -7,14 +7,9 @@ class DBManager:
     def __init__(self, database='example', host='db', user='root', password_file=None):
         pf = open(password_file, 'r')
         password = str(pf.read())[:-1]
-        self.database='example'
-        self.host='db'
-        self.user='alex'
-        self.password='HOOSojdZVupS'
-        print(f'password: {password}, user: {user}, host: {host}, db: {database}')
         self.connection = mysql.connector.connect(
             user=user, 
-            password=self.password,
+            password=password,
             host=host, # name of the mysql service as set in the docker compose file
             database=database,
             auth_plugin='mysql_native_password'
