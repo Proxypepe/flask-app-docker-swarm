@@ -1,0 +1,44 @@
+version: '3.9'
+
+
+services:
+
+  web:
+    image: 127.0.0.1:5000/flask-app:3.14
+    secrets:
+      - db_password
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    environment:
+      DB_PASSWORD: /run/secrets/db_password
+    deploy:
+      replicas: 1
+  
+  db:
+    image: mysql
+    secrets:
+      - db_password
+      - db_root_password
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_USER: alex
+      MYSQL_DATABASE: example
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+    deploy:
+      replicas: 1
+
+secrets:
+  db_root_password:
+    external: true
+  db_password:
+    external: true

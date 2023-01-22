@@ -4,11 +4,17 @@ import mysql.connector
 
 
 class DBManager:
-    def __init__(self, database='example', host="db", user="root", password_file=None):
+    def __init__(self, database='example', host='db', user='root', password_file=None):
         pf = open(password_file, 'r')
+        password = str(pf.read())[:-1]
+        self.database='example'
+        self.host='db'
+        self.user='alex'
+        self.password='HOOSojdZVupS'
+        print(f'password: {password}, user: {user}, host: {host}, db: {database}')
         self.connection = mysql.connector.connect(
             user=user, 
-            password=pf.read(),
+            password=self.password,
             host=host, # name of the mysql service as set in the docker compose file
             database=database,
             auth_plugin='mysql_native_password'
@@ -37,7 +43,10 @@ conn = None
 def listBlog():
     global conn
     if not conn:
-        conn = DBManager(password_file='/run/secrets/db-password')
+        database = os.getenv('DB_NAME')
+        user = os.getenv('DB_USERNAME')
+        host = 'db'
+        conn = DBManager(database=database, host=host, user=user, password_file='/run/secrets/db_password')
         conn.populate_db()
     rec = conn.query_titles()
 
@@ -48,4 +57,4 @@ def listBlog():
 
 
 if __name__ == '__main__':
-    server.run()
+    server.run(debug=True, host='0.0.0.0')
