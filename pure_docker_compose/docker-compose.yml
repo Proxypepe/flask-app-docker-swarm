@@ -4,6 +4,7 @@ version: '3.9'
 services:
 
   web:
+    container_name: flask_web 
     build:
       context: ../src
     secrets:
@@ -17,6 +18,7 @@ services:
         condition: service_healthy
 
   db:
+    container_name: flask_database
     image: mysql
     secrets:
       - db_password
