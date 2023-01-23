@@ -4,7 +4,7 @@ version: '3.9'
 services:
 
   web:
-    image: 127.0.0.1:5000/flask-app:4.0
+    image: 127.0.0.1:5000/flask-app:1
     secrets:
       - db_password
     ports:
