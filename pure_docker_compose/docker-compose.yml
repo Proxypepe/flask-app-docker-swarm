@@ -1,1 +1,35 @@
+version: '3.9'
 
+
+services:
+
+  web:
+    build:
+      context: ../src
+    secrets:
+      - db_password
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql
+    secrets:
+      - db_password
+      - db_root_password
+    env_file:
+      - ./.db_env
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+
+secrets:
+  db_root_password:
+    file: db_root_password
+  db_password:
+    file: db_password
