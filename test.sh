@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-started_service=`docker service ls | grep apps`
+started_service=$(docker service ls | grep apps)
 
 if [[ $started_service == *"0/1"* ]]; then 
 	echo "Service did not start yet"	

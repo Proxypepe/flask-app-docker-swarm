@@ -1,6 +1,6 @@
 #!/bin/bash
 
-init_info=`docker swarm init`
+init_info=$(docker swarm init)
 
 
 if [[ $init_info == *"This node is already part of a swarm"* ]]; then
@@ -10,9 +10,6 @@ else
 fi
 
 echo "Set up a Docker registry"
-
-running_containers=`docker service ls`
-
 
 docker service create --name registry --publish published=5000,target=5000 registry:2
 
