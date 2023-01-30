@@ -16,7 +16,7 @@ pipeline {
 
         stage("Build docker image") {
             steps{
-                sh "docker build -t $DOCKER_IMAGE_NAME ."
+                sh "docker build -t $DOCKER_IMAGE_NAME src/"
             }
         }
 
