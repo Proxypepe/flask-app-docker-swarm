@@ -10,6 +10,7 @@ pipeline {
         stage("Get Docker version") {
             steps{
                 sh "echo $USER"
+                sh "pwd"
                 sh "docker version"
             }
         }
