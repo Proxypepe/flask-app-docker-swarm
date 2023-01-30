@@ -10,6 +10,7 @@ services:
       - db_password
     ports:
       - "5000:5000"
+      - "8090:5000"
     env_file:
       - pure_docker_compose/.env
     depends_on:
