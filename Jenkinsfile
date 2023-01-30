@@ -7,21 +7,23 @@ pipeline {
     }
 
     stages {
-        stage('Get Docker version') {
-            sh 'echo $USER'
-            sh 'docker version'
+        stage("Get Docker version") {
+            steps{
+                sh "echo $USER"
+                sh "docker version"
+            }
         }
-    }
 
-    stage('Build docker image') {
-        steps{
-            sh 'docker build -t $DOCKER_IMAGE_NAME .'
+        stage("Build docker image") {
+            steps{
+                sh "docker build -t $DOCKER_IMAGE_NAME ."
+            }
         }
-    }
 
-    stage('Start docker compose') {
-        steps{
-            sh 'docker compose -f $DOCKER_COMPOSE_FILE up -d'
+        stage("Start docker compose") {
+            steps{
+                sh "docker compose -f $DOCKER_COMPOSE_FILE up -d"
+            }
         }
     }
 }
