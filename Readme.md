@@ -1,10 +1,10 @@
 # Flask application with devops tools
 
 ## Содержание:
-1. [Docker compose](#Docker compose)
-2. [Docker swarm](#Docker swarm)
+1. [Docker compose](#Docker-compose)
+2. [Docker swarm](#Docker-swarm)
 3. [Jenkins](#Jenkins)   
-  3.1. [Создание проекта и запуск pipeline](#Создание проекта и запуск pipeline)
+  3.1. [Создание проекта и запуск pipeline](#Создание-проекта-и-запуск-pipeline)
 
 
 ## Docker compose
