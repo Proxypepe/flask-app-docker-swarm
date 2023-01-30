@@ -22,7 +22,7 @@ pipeline {
 
         stage("Start docker compose") {
             steps{
-                sh "docker compose -f $DOCKER_COMPOSE_FILE up -d"
+                sh "docker-compose -f $DOCKER_COMPOSE_FILE up -d"
             }
         }
     }
