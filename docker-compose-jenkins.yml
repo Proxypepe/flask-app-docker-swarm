@@ -1,0 +1,36 @@
+version: '3.9'
+
+
+services:
+
+  web:
+    container_name: flask_web
+    image: flask_web
+    secrets:
+      - db_password
+    ports:
+      - "5000:5000"
+    env_file:
+      - pure_docker_compose/.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: flask_database
+    image: mysql
+    secrets:
+      - db_password
+      - db_root_password
+    env_file:
+      - pure_docker_compose/.db_env
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+
+secrets:
+  db_root_password:
+    file: pure_docker_compose/db_root_password
+  db_password:
+    file: pure_docker_compose/db_password
