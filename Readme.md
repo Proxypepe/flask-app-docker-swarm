@@ -9,7 +9,7 @@
 
 ## Docker compose
 
-Команда для запуска docker compose.
+Команда для запуска docker compose:
 ```sh
 docker compose -f pure_docker_compose/docker-compose.yml up -d
 ```
@@ -20,7 +20,7 @@ docker compose -f pure_docker_compose/docker-compose.yml up -d
   <figcaption>Запуск docker compose</figcaption>
 </figure>
 
-Чтобы проверить работоспособность, воспользуемся утилитой curl.
+Чтобы проверить работоспособность, воспользуемся утилитой curl:
 ```
 curl localhost:5000
 ```
@@ -34,7 +34,7 @@ curl localhost:5000
 
 ## Docker swarm
 
-Команда, чтобы дать разрешения на выполнение для .sh-скриптов.
+Команда, чтобы дать разрешения на выполнение для .sh-скриптов:
 ```sh
 chmod +x *.sh
 ```
@@ -45,7 +45,7 @@ chmod +x *.sh
   <figcaption>Командой выданы права на выполнение</figcaption>
 </figure>
 
-Команда, чтобы запустить службы docker swarm с помощью файла docker-compose.
+Команда, чтобы запустить службы docker swarm с помощью файла docker-compose:
 ```sh
 ./start.sh
 ```
@@ -56,7 +56,7 @@ chmod +x *.sh
   <figcaption>Запущенный docker swarm</figcaption>
 </figure>
 
-Команда, чтобы протестировать развернутое приложение, но придется подождать, пока службы не запустятся.
+Команда, чтобы протестировать развернутое приложение, но придется подождать, пока службы не запустятся:
 ```sh
 ./test.sh
 ```
@@ -74,7 +74,7 @@ chmod +x *.sh
   <figcaption>Результат тестирования</figcaption>
 </figure>
 
-Команда, чтобы пересобрать приложение. Необходимо указать версию, пример 1.1.
+Команда, чтобы пересобрать приложение. Необходимо указать версию, пример 1.1:
 ```sh
 ./rebuild_app.sh <virsion>
 ```
@@ -91,7 +91,7 @@ chmod +x *.sh
   <figcaption>Обновленная версия запущена</figcaption>
 </figure>
 
-Команда, чтобы зайти в контейнер.
+Команда, чтобы зайти в контейнер:
 ```sh
 ./connect.sh
 ```
@@ -102,7 +102,7 @@ chmod +x *.sh
   <figcaption>Результат тестирования</figcaption>
 </figure>
 
-Команда, чтобы свернуть приложение и завершить работу локального docker registry.
+Команда, чтобы свернуть приложение и завершить работу локального docker registry:
 ```sh
 ./clean.sh
 ```
@@ -172,7 +172,7 @@ chmod +x *.sh
 </figure>
 
 
-Команда, чтобы завершить выполнение docker compose.
+Команда, чтобы завершить выполнение docker compose:
 ```sh
 chmod +x stop-jenkins-compose.sh
 ./stop-jenkins-compose.sh <название проекта>
