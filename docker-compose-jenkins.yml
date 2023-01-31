@@ -7,7 +7,7 @@ services:
     container_name: flask_web
     image: flask_web
     secrets:
-      - db_password
+      - db-password
     ports:
       - "5000:5000"
       - "8090:5000"
@@ -21,8 +21,7 @@ services:
     container_name: flask_database
     image: mysql
     secrets:
-      - db_password
-      - db_root_password
+      - db-password
     env_file:
       - pure_docker_compose/.db_env
     healthcheck:
@@ -31,7 +30,5 @@ services:
         retries: 10
 
 secrets:
-  db_root_password:
-    file: pure_docker_compose/db_root_password
   db_password:
-    file: pure_docker_compose/db_password
+    file: pure_docker_compose/db-password

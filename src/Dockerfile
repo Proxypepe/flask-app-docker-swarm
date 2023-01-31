@@ -25,8 +25,10 @@ ENV PATH=/venv/bin:$PATH
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+ENV FLASK_APP hello
+
 COPY . .
 
 USER alex
 
-CMD ["python3", "hello.py"]
+CMD ["flask", "run", "--host", "0.0.0.0"]
