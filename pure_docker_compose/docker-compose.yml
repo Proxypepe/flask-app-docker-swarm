@@ -31,5 +31,5 @@ services:
         retries: 10
 
 secrets:
-  db_password:
-    file: db-password
+  db-password:
+    file: ./db-password
