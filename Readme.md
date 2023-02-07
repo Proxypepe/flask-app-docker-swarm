@@ -5,7 +5,7 @@
 2. [Docker swarm](#Docker-swarm)
 3. [Jenkins](#Jenkins)   
   3.1. [Создание проекта и запуск pipeline](#Создание-проекта-и-запуск-pipeline)
-
+4. [Minikube](#Minikube)
 
 ## Docker compose
 
@@ -177,3 +177,89 @@ chmod +x *.sh
 chmod +x stop-jenkins-compose.sh
 ./stop-jenkins-compose.sh <название проекта>
 ```
+
+## Minikube
+Для запуска необходимо установить:
+1. docker
+2. docker compose
+3. minikube
+4. kubectl
+
+Команда, чтобы запустить minikube. 
+```sh
+minikube start
+```
+
+<figure>
+  <img
+  src="images/minikube/minikube_start.png"
+  alt="Flask app test result">
+  <figcaption>Запуск minikube</figcaption>
+</figure>
+
+Запустить манифесты можно двумя способами:
+1. Использовать скрипт start в директории k8s/
+Нужна утилита kubectl
+```sh
+chomod +x start.sh
+chomod +x flask/start.sh
+chomod +x mysql/start.sh
+./start
+```
+2. Последовательно запустит все манифесты
+Нужна утилита kubectl или следующий алиас 
+ 
+```sh
+alias kubectl='minikube kubectl --'
+```
+
+Последовательность:
+```sh
+kubectl apply -f mysql/mysql-secret.yaml
+kubectl apply -f mysql/mysql-storage.yaml
+kubectl apply -f mysql/mysql-deployment.yaml
+kubectl apply -f mysql/mysql-service.yaml
+kubectl apply -f flask/flask-secret.yaml
+kubectl apply -f flask/flask-deployment.yaml
+kubectl apply -f flask/flask-service.yaml
+```
+
+<figure>
+  <img
+  src="images/minikube/mysql_dep.png"
+  alt="Flask app test result">
+  <figcaption>mysql deployment</figcaption>
+</figure>
+
+<figure>
+  <img
+  src="images/minikube/deploy.png"
+  alt="Flask app test result">
+  <figcaption>Show deployments</figcaption>
+</figure>
+
+<figure>
+  <img
+  src="images/minikube/services.png"
+  alt="Flask app test result">
+  <figcaption>Show services</figcaption>
+</figure>
+
+
+```sh
+chmod +x exec.sh
+./exec.sh <pod id> <shell>
+```
+<figure>
+  <img
+  src="images/minikube/exec.png"
+  alt="Flask app test result">
+  <figcaption>Получаем доступ к командной строке контейнера</figcaption>
+</figure>
+
+<figure>
+  <img
+  src="images/minikube/curl.png"
+  alt="Flask app test result">
+  <figcaption>Results</figcaption>
+</figure>
