@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-deployment
+  name: flask-app
   labels:
     app: flask-app
 spec:
@@ -15,33 +15,18 @@ spec:
         app: flask-app
     spec:
       containers:
-        - image: justhynd/flask-app-devops:latest
-          name: flask-app-devops
+        - image: justhynd/flask-app-devops:etc
+          name: flask-app
           imagePullPolicy: Always
-          volumeMounts:
-            - mountPath: "/run/secrets/"
-              name: db-password
-              readOnly: true
           ports:
             - containerPort: 5000
-              name: flaskapp
-
+          volumeMounts:
+            - mountPath: "/etc/secrets/"
+              name: db-password-secret
+              readOnly: true
+      
       volumes:
-        - name: db-password
+        - name: db-password-secret
           secret:
-            secretName: db-password
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-app
-  labels:
-    app: flask
-spec:
-  selector:
-    app: flask-app
-  ports:
-    - port: 5000
-      targetPort: 5000
+            secretName: secret-data
 

@@ -22,6 +22,11 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: password
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: database
         ports:
         - containerPort: 3306
           name: mysql
@@ -32,13 +37,4 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  ports:
-  - port: 3306
-  selector:
-    app: mysql
+
