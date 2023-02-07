@@ -2,7 +2,7 @@
 
 url=$(minikube service flask-app-service --url)
 
-curl $url
+curl "$url"
 
 
 

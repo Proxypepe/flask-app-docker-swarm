@@ -20,6 +20,7 @@ services:
   
   db:
     image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
     secrets:
       - db_password
       - db_root_password
