@@ -7,4 +7,4 @@ if [[ -z $shell ]]; then
 	shell=/bin/bash
 fi
 
-minikube kubectl -- exec --stdin --tty $pod_name -- $shell
+minikube kubectl -- exec --stdin --tty "$pod_name" -- $shell
